@@ -6,7 +6,7 @@ IALGLIB=-I$(ALGLIB)/src
 
 # compiler setting
 CC=g++
-CFLAGS = ${IALGLIB} -I../src -std=c++11 -Wall -Wextra
+CFLAGS = ${IALGLIB} -I../include -std=c++11 -Wall -Wextra
 CFLAGS += -O2
 #CFLAGS += -DNDEBUG			# disables all assert() checks
 CFLAGS += -DHAVE_SSTREAM		# whether compiler has <sstream>
@@ -38,17 +38,17 @@ cubic_root:	cubic_root.o gsl_solve_cubic.o
 		${CC} $^ -o $@
 
 tests/compile_units:	tests/compile_units.o tests/myfunc1.o tests/myfunc2.o
-		${CC} $? -o $@ 
-tests/simple_demo_c98:	tests/simple_demo_c98.cpp ../src/spline.h
-		${CC} -Wall -Wextra -Werror -I../src -std=c++98 $< -o $@
+		${CC} $? -o $@
+tests/simple_demo_c98:	tests/simple_demo_c98.cpp ../include/spline.h
+		${CC} -Wall -Wextra -Werror -I../include -std=c++98 $< -o $@
 tests/unit_tests:	tests/unit_tests.o
 		${CC} $< -o $@ -lboost_unit_test_framework
 
 
-%.o: 		%.cpp ../src/spline.h
+%.o: 		%.cpp ../include/spline.h
 		${CC} ${CFLAGS} -c $< -o $@
 
-tests/%.o:	tests/%.cpp ../src/spline.h
+tests/%.o:	tests/%.cpp ../include/spline.h
 		${CC} ${CFLAGS} -Werror -c $< -o $@
 
 
