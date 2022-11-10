@@ -15,6 +15,25 @@ the following features.
   * quadratic: if 2nd order derivatives not equal to zero specified
 * monotonicity can be enforced (when input is monotonic as well)
 
+### How to install
+
+```sh
+git clone git@github.com:tp5uiuc/spline.git
+cd spline
+cmake \
+    -B build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_CXX_COMPILER=<compiler> \
+    -DCMAKE_INSTALL_PREFIX=<path install> \
+    -S .
+```
+
+Set path
+```sh
+# in ~/.localrc
+export SPLINE_ROOT=<path install>
+```
+
 ### Usage
 The library is a header-only file with no external dependencies and can
 be used like this:
